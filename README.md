@@ -22,6 +22,7 @@ in VSCode/Cursor by day and wants the terminal editor to feel like home.
 | Tab bar | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) | One tab per open file, close buttons, mouse-friendly |
 | Search | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy file finder, live grep |
 | Syntax | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Highlighting + indent for 53 languages (the `darwinsitter.lua` file) |
+| Agent bridge | [herdr-nvim](https://github.com/ChmaraX/herdr-nvim) | Reference code lines and send review comments to coding agents in your [herdr](https://herdr.dev) workspace |
 | Looks | [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) + [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Colorscheme (transparent background) and statusline |
 
 ## Requirements
@@ -36,6 +37,7 @@ in VSCode/Cursor by day and wants the terminal editor to feel like home.
 - **A C compiler** (Xcode Command Line Tools, gcc, or clang) — parsers and telescope's
   native fuzzy matcher are compiled from source
 - **`make`, `tar`, `curl`** on your PATH
+- *(optional)* **[herdr](https://herdr.dev) ≥ 0.7.5** — only for the agent integration
 
 ## Install
 
@@ -70,6 +72,23 @@ The **leader key is `space`**. (`space cd` means press space, then c, then d.)
 
 Inside the file tree: `Enter` opens, `?` shows every action — `a` new file, `r` rename,
 `d` delete, `y`/`x`/`p` copy/cut/paste, `/` filter.
+
+### Talking to your agents (herdr-nvim)
+
+These work when Neovim runs inside a [herdr](https://herdr.dev) session; outside one the
+rest of the config is unaffected.
+
+| Keys | Action |
+|---|---|
+| `space ai` | Drop `path:12-20` for the current line/selection into the agent's input |
+| `space ac` | Review-style comment on the current line/selection |
+| `space as` | Paste all your comments into the agent's input (you hit enter) |
+| `space aS` | Send all comments and submit |
+| `space al` | List / edit / delete pending comments |
+
+On the herdr side, `prefix+e` toggles the nvim sidebar and `prefix+o` opens the file
+picker (files your agent touched this session). The herdr half is installed with
+`herdr plugin install ChmaraX/herdr-nvim`.
 
 ## Editing the language list
 
