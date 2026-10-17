@@ -13,15 +13,17 @@ return {
       close_if_last_window = false,
       enable_git_status = true,
       filesystem = {
-        -- show everything: dotfiles, gitignored, ignored-pattern files.
-        -- nothing is hidden — filtered items would only be dimmed, never removed.
+        -- show everything — dotfiles, gitignored, and ignored-pattern files all
+        -- list normally (VSCode behavior). the only exclusions are VSCode's own
+        -- defaults: .git internals and OS junk. press H in the tree to reveal them.
         filtered_items = {
-          visible = true,
+          visible = false,
+          show_hidden_count = false, -- no "(N hidden items)" footer
           hide_dotfiles = false,
           hide_gitignored = false,
           hide_ignored = false,
           hide_hidden = false,
-          hide_by_name = {},
+          hide_by_name = { '.git', '.DS_Store', 'Thumbs.db' },
           hide_by_pattern = {},
           never_show = {},
         },
