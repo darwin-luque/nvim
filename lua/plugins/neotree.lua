@@ -13,6 +13,18 @@ return {
       close_if_last_window = false,
       enable_git_status = true,
       filesystem = {
+        -- show everything: dotfiles, gitignored, ignored-pattern files.
+        -- nothing is hidden — filtered items would only be dimmed, never removed.
+        filtered_items = {
+          visible = true,
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          hide_ignored = false,
+          hide_hidden = false,
+          hide_by_name = {},
+          hide_by_pattern = {},
+          never_show = {},
+        },
         -- reveal the current file in the tree, like VSCode's explorer
         follow_current_file = { enabled = true },
         -- neo-tree takes over from netrw entirely
